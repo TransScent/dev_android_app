@@ -1,10 +1,10 @@
-package com.example.learning_app;
+package com.example.learning_app.Utilities;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
 
 public class UtilitiesCheck {
-    public Context context;
+     public Context context;
     public UtilitiesCheck(Context context) {
         this.context=context;
     }

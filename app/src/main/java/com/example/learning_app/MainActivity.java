@@ -1,13 +1,12 @@
 package com.example.learning_app;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
+import com.example.learning_app.Utilities.UtilitiesCheck;
 import com.google.android.material.snackbar.Snackbar;
 
 public class MainActivity extends AppCompatActivity {
@@ -25,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
 
                 if(utilitiesCheck.isNetworkConnected())
                 {
-
                     Snackbar.make(view, "Internet Connection available", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                 }else{
                     Snackbar.make(view, "No internet connection.\n Please check your network connection", Snackbar.LENGTH_LONG).setAction("Action", null).show();
