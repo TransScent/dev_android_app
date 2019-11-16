@@ -12,17 +12,25 @@ import com.google.android.material.snackbar.Snackbar;
 
 public class MainActivity extends AppCompatActivity {
     Button btn_test;
+    UtilitiesCheck utilitiesCheck;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        utilitiesCheck=new UtilitiesCheck(getApplicationContext());
         btn_test=findViewById(R.id.button_id);
         btn_test.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Welcome Back Jayprakash In Android world !!!", Toast.LENGTH_SHORT).show();
-                Snackbar.make(view, "Try Again !!!", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+
+                if(utilitiesCheck.isNetworkConnected())
+                {
+
+                    Snackbar.make(view, "Internet Connection available", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                }else{
+                    Snackbar.make(view, "No internet connection.\n Please check your network connection", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                }
+
             }
         });
 
