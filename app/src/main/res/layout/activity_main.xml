@@ -5,20 +5,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-
-
-
-    <Button
+<!--    <Button
         android:id="@+id/button_id"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:text="Welcome Back"
         android:textAlignment="center"
         android:paddingLeft="20dp"
-        android:paddingRight="20px"
-        android:layout_marginTop="400px"
+        android:paddingRight="20dp"
+        android:layout_marginTop="30dp"
         android:textColor="@color/colorAccent"
         />
 
+
+    <EditText
+    android:id="@+id/edit_number"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+        android:layout_marginTop="102dp"
+        android:background="@color/colorPrimary"
+
+/>-->
+<ListView
+    android:id="@+id/list_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>
