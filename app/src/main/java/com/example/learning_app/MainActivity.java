@@ -12,14 +12,22 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.learning_app.Utilities.UtilitiesCheck;
 import com.google.android.material.snackbar.Snackbar;
 
+import org.json.JSONObject;
+
 public class MainActivity extends AppCompatActivity {
-    Context mcontext;
     Button btn_test;
-    EditText edit_number;
+    String url="http://localhost:8020/api/learning/getCountriesList";
     UtilitiesCheck utilitiesCheck;
+     RequestQueue queue;
      ListView listView ;
       String[] mobileArray = {"Android","IPhone","WindowsMobile","Blackberry",
           "WebOS","Ubuntu","Windows7","Max OS X"};
@@ -32,17 +40,34 @@ public class MainActivity extends AppCompatActivity {
                  R.layout.activity_listview, mobileArray);
           listView = (ListView) findViewById(R.id.list_item);
                listView.setAdapter(adapter);
-
+              queue = Volley.newRequestQueue(this);
                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                    @Override
                    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                           Object o = adapterView.getItemAtPosition(position);
                                 String str=(String)o;//As you are using Default String Adapter
-                       if(str=="Android")
-                       {
-                           Toast.makeText(mcontext,"I am inside Android",Toast.LENGTH_LONG).show();
+                       if(str=="Android") {
+
+                           JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+
+                               @Override
+                               public void onResponse(JSONObject response) {
+                                   System.out.println(response);
+
+
+                               }
+                           }, new Response.ErrorListener() {
+
+                               @Override
+                               public void onErrorResponse(VolleyError error) {
+                                   // TODO Auto-generated method stub
+
+                               }
+                           });
+
+                           queue.add(jsObjRequest);
                        } else{
-                          Toast.makeText(mcontext,"I am from somewhere else !!!"+str,Toast.LENGTH_LONG).show();
+                          Toast.makeText(getApplicationContext(),"I am from somewhere else !!!"+str,Toast.LENGTH_LONG).show();
                        }
 
                    }
