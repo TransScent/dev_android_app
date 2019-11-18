@@ -2,6 +2,7 @@ package com.example.learning_app;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -15,6 +16,7 @@ import com.example.learning_app.Utilities.UtilitiesCheck;
 import com.google.android.material.snackbar.Snackbar;
 
 public class MainActivity extends AppCompatActivity {
+    Context mcontext;
     Button btn_test;
     EditText edit_number;
     UtilitiesCheck utilitiesCheck;
@@ -36,7 +38,13 @@ public class MainActivity extends AppCompatActivity {
                    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                           Object o = adapterView.getItemAtPosition(position);
                                 String str=(String)o;//As you are using Default String Adapter
-                        Toast.makeText(MainActivity.this,str,Toast.LENGTH_LONG).show();
+                       if(str=="Android")
+                       {
+                           Toast.makeText(mcontext,"I am inside Android",Toast.LENGTH_LONG).show();
+                       } else{
+                          Toast.makeText(mcontext,"I am from somewhere else !!!"+str,Toast.LENGTH_LONG).show();
+                       }
+
                    }
                });
 
