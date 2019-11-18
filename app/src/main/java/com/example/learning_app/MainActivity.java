@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,6 +30,16 @@ public class MainActivity extends AppCompatActivity {
                  R.layout.activity_listview, mobileArray);
           listView = (ListView) findViewById(R.id.list_item);
                listView.setAdapter(adapter);
+
+               listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                   @Override
+                   public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                          Object o = adapterView.getItemAtPosition(position);
+                                String str=(String)o;//As you are using Default String Adapter
+                        Toast.makeText(MainActivity.this,str,Toast.LENGTH_LONG).show();
+                   }
+               });
+
 
         /*
         btn_test=findViewById(R.id.button_id);
