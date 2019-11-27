@@ -1,34 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-<!--    <Button
-        android:id="@+id/button_id"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:text="Welcome Back"
-        android:textAlignment="center"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:layout_marginTop="30dp"
-        android:textColor="@color/colorAccent"
-        />
 
-
-    <EditText
-    android:id="@+id/edit_number"
-    android:layout_width="match_parent"
+<Button
+    android:id="@+id/button_id"
     android:layout_height="wrap_content"
-        android:layout_marginTop="102dp"
-        android:background="@color/colorPrimary"
-
-/>-->
-<ListView
-    android:id="@+id/list_item"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content" />
+    android:text="Welcome Back"
+    android:textAlignment="center"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:layout_marginTop="30dp"
+    android:textColor="@color/colorAccent"
+    />
 
-</androidx.appcompat.widget.LinearLayoutCompat>
+   <!--
+       <EditText
+       android:id="@+id/edit_number"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+           android:layout_marginTop="102dp"
+           android:background="@color/colorPrimary"
+
+
+   <ListView
+   android:id="@+id/list_item"
+   android:layout_width="match_parent"
+   android:layout_height="wrap_content" />
+   -->
+</LinearLayout>

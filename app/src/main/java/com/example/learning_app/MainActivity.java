@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -24,88 +25,42 @@ import com.google.android.material.snackbar.Snackbar;
 import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
+    public static final String TAG = MainActivity.class.getSimpleName();
     Button btn_test;
-    String url="http://localhost:8020/api/learning/getCountriesList";
+    String url="http://192.168.42.85:8020/api/learning/getCountriesList";
     UtilitiesCheck utilitiesCheck;
-     RequestQueue queue;
-     ListView listView ;
-      String[] mobileArray = {"Android","IPhone","WindowsMobile","Blackberry",
-          "WebOS","Ubuntu","Windows7","Max OS X"};
+    RequestQueue queue;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         utilitiesCheck=new UtilitiesCheck(getApplicationContext());
-         ArrayAdapter adapter = new ArrayAdapter<String>(this, 
-                 R.layout.activity_listview, mobileArray);
-          listView = (ListView) findViewById(R.id.list_item);
-               listView.setAdapter(adapter);
-              queue = Volley.newRequestQueue(this);
-               listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                   @Override
-                   public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                          Object o = adapterView.getItemAtPosition(position);
-                                String str=(String)o;//As you are using Default String Adapter
-                       if(str=="Android") {
-
-                           JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-
-                               @Override
-                               public void onResponse(JSONObject response) {
-                                   System.out.println(response);
-
-
-                               }
-                           }, new Response.ErrorListener() {
-
-                               @Override
-                               public void onErrorResponse(VolleyError error) {
-                                   // TODO Auto-generated method stub
-
-                               }
-                           });
-
-                           queue.add(jsObjRequest);
-                       } else{
-                          Toast.makeText(getApplicationContext(),"I am from somewhere else !!!"+str,Toast.LENGTH_LONG).show();
-                       }
-
-                   }
-               });
-
-
-        /*
-        btn_test=findViewById(R.id.button_id);
-     edit_number=findViewById(R.id.edit_number);
-    btn_test.setOnClickListener(new View.OnClickListener() {
+        btn_test=(Button) findViewById(R.id.button_id);
+        queue = Volley.newRequestQueue(getApplicationContext());
+        btn_test.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
 
-                if(utilitiesCheck.isNetworkConnected())
-                {
-                   this.doSomeThinking();
-                    Snackbar.make(view, "Internet Connection available", Snackbar.LENGTH_LONG).setAction("Action", null).show();
-                }else{
-                    Snackbar.make(view, "No internet connection.\n Please check your network connection", Snackbar.LENGTH_LONG).setAction("Action", null).show();
-                }
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d(TAG,response.toString());
+                        System.out.println("TEST"+response.toString());
 
+
+                    }
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+
+                    }
+                });
+queue.add(jsObjRequest);
             }
-
-            private void doSomeThinking() {
-           int num=Integer.parseInt(edit_number.getText().toString());
-                num=23;
-           if(num>10){
-               Toast.makeText(getApplicationContext(),num,Toast.LENGTH_LONG).show();
-           }else {
-               Toast.makeText(getApplicationContext(),"I'm here for other reason...",Toast.LENGTH_LONG).show();
-
-           }
-
-
-
-            }
-
         });
-                */
+
+
     }
 }
