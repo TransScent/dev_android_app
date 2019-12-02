@@ -16,17 +16,22 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.learning_app.Adapter.CountryAdapter;
+import com.example.learning_app.Models.CountryModel;
 import com.example.learning_app.Utilities.UtilitiesCheck;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = MainActivity.class.getSimpleName();
     Button btn_test;
     String url="http://192.168.42.113:8020/api/learning/getCountriesList";
     UtilitiesCheck utilitiesCheck;
     RequestQueue queue;
-    ArrayAdapter adapter;
+    CountryAdapter adapter;
     ListView listView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +40,9 @@ public class MainActivity extends AppCompatActivity {
         utilitiesCheck=new UtilitiesCheck(getApplicationContext());
         btn_test=(Button) findViewById(R.id.button_id);
         queue = Volley.newRequestQueue(getApplicationContext());
-        adapter = new ArrayAdapter<String>(this,R.layout.activity_listview);
+        ArrayList<CountryModel> arrayOfUsers = new ArrayList<CountryModel>();
+         adapter = new CountryAdapter(this, arrayOfUsers);
+        listView.setAdapter(adapter);
         listView= (ListView) findViewById(R.id.list_items);
         listView.setAdapter(adapter);
             btn_test.setOnClickListener(new View.OnClickListener() {
@@ -52,6 +59,10 @@ public class MainActivity extends AppCompatActivity {
                                     System.out.println(is_process);
                                     if (status.equals("200") && is_process.equals("Y")) {
                                         JSONArray results = response.getJSONArray("results");
+
+
+
+
                                         Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
                                         System.out.println("Results"+results);
 
