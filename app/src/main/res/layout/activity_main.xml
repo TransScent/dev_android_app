@@ -4,32 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
-<Button
-    android:id="@+id/button_id"
-    android:layout_height="wrap_content"
-    android:layout_width="match_parent"
-    android:text="Welcome Back"
-    android:textAlignment="center"
-    android:paddingLeft="20dp"
-    android:paddingRight="20dp"
-    android:layout_marginTop="30dp"
-    android:textColor="@color/colorAccent"
-    />
 
-   <!--
-       <EditText
-       android:id="@+id/edit_number"
-       android:layout_width="match_parent"
+   <Button
+       android:id="@+id/button_id"
        android:layout_height="wrap_content"
-           android:layout_marginTop="102dp"
-           android:background="@color/colorPrimary"
+       android:layout_width="match_parent"
+       android:text="Welcome Back"
+       android:textAlignment="center"
+       android:paddingLeft="20dp"
+       android:paddingRight="20dp"
+       android:layout_marginTop="30dp"
+       android:textColor="@color/colorAccent"
+       />
+<ListView
+    android:id="@+id/list_items"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" />
 
-   -->
-   <ListView
-   android:id="@+id/list_items"
-   android:layout_width="match_parent"
-   android:layout_height="wrap_content" />
 
-</LinearLayout>
+   </LinearLayout>
+
+
