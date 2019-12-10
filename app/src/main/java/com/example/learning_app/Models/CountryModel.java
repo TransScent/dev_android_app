@@ -1,21 +1,21 @@
 package com.example.learning_app.Models;
 
 public class CountryModel {
-    String id;
+    int id;
     String name;
     int phonecode;
-    public CountryModel(String name,String id,int phonecode){
+    public CountryModel(String name,int id){
         this.name=name;
-        this.id=id;
-        this.phonecode=phonecode;
+      this.id=id;
+//        this.phonecode=phonecode;
 
     }
 
-    public String  getId() {
+    public int  getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

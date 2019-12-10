@@ -38,7 +38,7 @@ public class CustomAdapter extends BaseAdapter {
         view = inflater.inflate(R.layout.activity_listview, parent,false);
         final CountryModel users = arraylist.get(positon);
         TextView name = (TextView)view.findViewById(R.id.countryName);
-        name.setText("Name - "+users.getName()+"\n"+"Id - "+users.getId()+"phonecode - "+users.getPhonecode());
+        name.setText(users.getName());
 
         return view;
     }
