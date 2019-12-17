@@ -2,6 +2,7 @@ package com.example.learning_app;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = MainActivity.class.getSimpleName();
 
-    private Context context = this;
+    Context mcontext = this;
     Button btn_test;
     UtilitiesCheck utilitiesCheck;
     RequestQueue queue;
@@ -46,15 +47,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         apiCall=new ApiCall();
-        dialog1 = new SpotsDialog(context);
+        dialog1 = new SpotsDialog(mcontext);
+        //Typeface tf = Typeface.createFromAsset(mcontext.getAssets(),"fonts/sofiaProRegular.ttf");
+
         arrayofUsers = new ArrayList<CountryModel>();
-        utilitiesCheck=new UtilitiesCheck(context);
+        utilitiesCheck=new UtilitiesCheck(mcontext);
         btn_test=findViewById(R.id.button_id);
-        queue = Volley.newRequestQueue(context);
+        queue = Volley.newRequestQueue(mcontext);
         adapter = new CustomAdapter(MainActivity.this, arrayofUsers);
 
         //Attach the adapter to Listview
         listView = (ListView)findViewById(R.id.list_items);
+
             btn_test.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -79,14 +83,14 @@ public class MainActivity extends AppCompatActivity {
                                             arrayofUsers.add(new CountryModel(name,id));
                                         }
                                         listView.setAdapter(adapter);
-                                        Toast.makeText(context,"Success",Toast.LENGTH_LONG).show();
+
                                     } else {
                                          dialog1.dismiss();
-                                        Toast.makeText(context, "Unable to get response", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(mcontext, "Unable to get response", Toast.LENGTH_LONG).show();
                                     }
                                 } catch (JSONException e) {
                                     dialog1.dismiss();
-                                    Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
+                                    Toast.makeText(mcontext, e.getMessage(), Toast.LENGTH_LONG).show();
                                 }
                             }
                         }, new Response.ErrorListener() {
@@ -94,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onErrorResponse(VolleyError error) {
                                 dialog1.dismiss();
-                                Toast.makeText(context, error.getMessage(), Toast.LENGTH_LONG).show();
+                                Toast.makeText(mcontext, error.getMessage(), Toast.LENGTH_LONG).show();
                             }
                         });
                         queue.add(jsObjRequest);
@@ -111,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
 
                 CountryModel selItem = (CountryModel ) listView.getItemAtPosition(position);
                 int id= selItem.getId();
-                Intent myIntent = new Intent(context, RecyclerViewActivity.class);
+                Intent myIntent = new Intent(mcontext, RecyclerViewActivity.class);
                 myIntent.putExtra("id",id);
                 startActivity(myIntent);
 
